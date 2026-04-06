@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO 최적화 메타 데이터 -->
+    <title>MY MONEY | 나만의 스마트 금융 즐겨찾기 &amp; 인사이트 포털</title>
+    <meta name="description" content="금융, 경제, 주식, 가상자산에 대한 나만의 즐겨찾기 목록과 깊이 있는 경제 인사이트를 한 곳에서 관리하세요. 개인화된 금융 포털 서비스 'MY MONEY'입니다.">
+    <meta name="keywords" content="금융즐겨찾기, 경제포털, 주식분석, 암호화폐정보, 나만의금융비서, 마이머니">
+    <meta name="author" content="MY MONEY Team">
+    <link rel="canonical" href="https://mymoney-curation.com/"> <!-- 실제 서비스 도메인 -->
+
+    <!-- 소셜 미디어 공유 (Open Graph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MY MONEY | 나만의 스마트 금융 즐겨찾기">
+    <meta property="og:description" content="자주 찾는 금융 사이트와 최신 경제 뉴스를 한눈에. 나만의 금융 지도를 그려보세요.">
+    <meta property="og:url" content="https://mymoney-curation.com/">
+    <meta property="og:site_name" content="MY MONEY">
+    
+    <!-- 트위터 카드 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MY MONEY | 개인화 금융 포털">
+    <meta name="twitter:description" content="자주 찾는 금융 사이트를 한곳에 모아 관리하는 가장 똑똑한 방법.">
+
+    <!-- 구조화 데이터 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MY MONEY",
+      "url": "https://mymoney-curation.com/",
+      "description": "개인 맞춤형 금융 즐겨찾기 및 인사이트 블로그 서비스",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mymoney-curation.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css" rel="stylesheet">
+    
+    <!-- Quill.js CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar">
+            <div class="sidebar-brand">
+                <h1>MY MONEY</h1>
+                <p>Private Financial Portal</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="menu-label navigation-label">PORTAL</div>
+                <div class="sidebar-nav-list" style="margin-bottom: 2rem;">
+                    <button class="nav-btn active" data-view="bookmarks"><i class="fa-solid fa-house"></i> 대시보드</button>
+                    <button class="nav-btn" data-view="elfsight-board"><i class="fa-solid fa-comments"></i> 게시판</button>
+                    <button class="nav-btn" data-view="shortcuts"><i class="fa-solid fa-link"></i> 익스프레스</button>
+                    <button class="nav-btn" data-view="board"><i class="fa-solid fa-star"></i> 알파 리포트</button>
+                </div>
+
+                <div class="menu-label">SECTORS</div>
+                <div id="category-filter-container" class="sidebar-category-list" data-filter-type="category">
+                    <!-- Categories will be generated here -->
+                </div>
+                
+                <div class="menu-label" style="margin-top: 2rem;">RESOURCES</div>
+                <div class="filter-group sidebar-type-list" data-filter-type="type">
+                    <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group"></i> 전체</button>
+                    <button class="filter-btn" data-filter="website"><i class="fa-solid fa-globe"></i> 웹사이트</button>
+                    <button class="filter-btn" data-filter="youtube"><i class="fa-brands fa-youtube"></i> 유튜브</button>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div id="authContainerSidebar">
+                    <!-- User Info & Login/Logout will be moved here -->
+                </div>
+                <div class="sync-indicator-wrapper">
+                    <div id="syncStatus" class="sync-status">
+                        <i class="fa-solid fa-cloud"></i>
+                        <span>저장됨</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div id="main-container">
+            <header class="main-header">
+                <div class="header-content">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <button id="mobileMenuBtn" class="mobile-menu-btn" title="메뉴 열기">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <nav class="top-nav">
+                            <ul class="top-menu">
+                                <li><a href="#" class="active" data-view="bookmarks">대시보드</a></li>
+                                <li><a href="#" data-view="elfsight-board">게시판</a></li>
+                                <li><a href="#" data-view="shortcuts">익스프레스</a></li>
+                                <li><a href="#" data-view="board">알파 리포트</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <button id="manageCategoryBtn" class="action-btn circle-btn" title="카테고리 관리" style="display: none;">
+                            <i class="fa-solid fa-gear"></i>
+                        </button>
+                        <button id="addBtn" class="action-btn plus-btn" style="display: none;">
+                            <i class="fa-solid fa-plus"></i> 추가하기
+                        </button>
+                        <button id="addBoardBtn" class="action-btn plus-btn" style="display: none; background: linear-gradient(135deg, #FF6B6B, #EE5253);">
+                            <i class="fa-solid fa-pen-to-square"></i> 인사이트 쓰기
+                        </button>
+                        
+                        <div id="authContainerHeader">
+                             <button id="loginBtnTrigger" class="login-trigger-btn">
+                                <i class="fa-solid fa-user-circle"></i>
+                                <span>로그인</span>
+                             </button>
+                             <div id="userProfile" style="display: none; align-items: center; gap: 0.8rem;">
+                                <span id="userNameDisplay" class="user-name"></span>
+                                <button id="logoutBtn" class="logout-mini-btn" title="로그아웃"><i class="fa-solid fa-sign-out-alt"></i></button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-scroll-area">
+                <div class="page-content">
+                    <!-- 북마크 그리드 섹션 -->
+                    <section class="bookmarks-section">
+                        <!-- Sub-categories will be generated here -->
+                        <div id="subcategory-filter-container" class="sub-filter-group" data-filter-type="subcategory" style="display: none; margin-bottom: 2rem;">
+                        </div>
+                        
+                        <div id="cardGrid" class="grid" role="list">
+                            <!-- Cards will be generated here -->
+                        </div>
+                    </section>
+
+                    <section id="shortcutsSection" class="shortcuts-section" style="display: none;">
+                        <div class="section-header" style="justify-content: flex-end; margin-bottom: 1rem; border: none;">
+                            <button id="addShortcutBtn" class="add-btn admin-only" title="바로가기 추가">
+                                <i class="fa-solid fa-plus"></i> 추가
+                            </button>
+                        </div>
+                        <div id="shortcutsGrid" class="shortcuts-grid">
+                            <!-- Shortcut cards will be generated here -->
+                        </div>
+                    </section>
+
+                    <!-- 추천 게시판 섹션 (Card Type) -->
+                    <section id="boardSection" class="board-section" style="display: none;">
+                        <div class="section-header">
+                            <h2>인사이트</h2>
+                            <p>최고의 금융 정보를 공유하고 인사이트를 얻어보세요.</p>
+                        </div>
+                        <div id="boardGrid" class="board-grid">
+                            <!-- Board cards will be generated here -->
+                        </div>
+                    </section>
+
+                    <!-- Elfsight Board Section -->
+                    <section id="elfsightBoardSection" class="board-section" style="display: none;">
+                        <div class="section-header">
+                            <h2>자유 게시판</h2>
+                            <p>금융 정보와 다양한 의견을 자유롭게 나눠보세요.</p>
+                        </div>
+                        <div class="elfsight-container" style="background: var(--surface-container-low); border-radius: 16px; padding: 1rem; min-height: 600px;">
+                            <script src="https://elfsightcdn.com/platform.js" async></script>
+                            <div class="elfsight-app-4a5fc3a2-0cca-4257-928d-203f4715a319" data-elfsight-app-lazy></div>
+                        </div>
+                    </section>
+                </div>
+                
+                <footer class="main-footer">
+                    <div class="footer-container">
+                        <div class="footer-content">
+                            <div class="footer-left">
+                                <div class="footer-logo">
+                                    <span class="logo-icon"><i class="fa-solid fa-vault"></i></span>
+                                    <span class="logo-text">MY MONEY</span>
+                                </div>
+                                <div class="social-links">
+                                    <a href="#" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                                    <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                                    <a href="#" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                                </div>
+                            </div>
+                            
+                            <div class="footer-right">
+                                <nav class="footer-links">
+                                    <a href="#" data-view="bookmarks">홈</a>
+                                    <a href="#" data-view="shortcuts">익스프레스</a>
+                                    <a href="#" data-view="board">알파 리포트</a>
+                                    <span class="footer-separator">|</span>
+                                    <a href="#">이용약관</a>
+                                    <a href="#">개인정보처리방침</a>
+                                </nav>
+                                <div class="footer-info">
+                                    <span class="copyright">&copy; 2026 MY MONEY CURATION.</span>
+                                    <span class="rights">All rights reserved.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div id="sidebar-overlay"></div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">새 항목 추가</h2>
+                <button id="closeModal" class="close-btn">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <form id="itemForm">
+                <input type="hidden" id="itemId">
+                <div class="form-group">
+                    <label for="title">제목</label>
+                    <input type="text" id="title" required placeholder="예: 네이버 증권">
+                </div>
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input type="url" id="url" required placeholder="https://example.com">
+                </div>
+                <div class="form-group flex-group" style="display: flex; gap: 1rem;">
+                    <div style="flex: 1;">
+                        <label for="category">카테고리</label>
+                        <select id="category" required>
+                            <!-- 동적 렌더링 -->
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>소분류 (중복 선택 가능)</label>
+                        <div id="subCategoryCheckboxes" class="form-checkbox-group">
+                            <!-- 소분류 체크박스들이 동적으로 생성됨 -->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="type">형식</label>
+                    <select id="type" required>
+                        <option value="website">웹사이트</option>
+                        <option value="youtube">유튜브</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="premium-checkbox-wrapper">
+                        <input type="checkbox" id="isPremium">
+                        <i class="fa-solid fa-crown crown-icon"></i>
+                        <span>우수사이트 (왕관 표시)</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="description">설명</label>
+                    <textarea id="description" rows="3" placeholder="간단한 설명을 입력하세요"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Management Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>카테고리 관리</h2>
+                <button id="closeCategoryModal" class="close-btn">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="category-adder" style="display: flex; gap: 0.5rem; margin-bottom: 2rem;">
+                <input type="text" id="newCatId" placeholder="고유 ID (영어, 예: realestate)" style="flex: 1; padding: 0.5rem; border: var(--ghost-border); border-radius: 4px;">
+                <input type="text" id="newCatName" placeholder="표시 이름 (한글, 예: 부동산)" style="flex: 1; padding: 0.5rem; border: var(--ghost-border); border-radius: 4px;">
+                <button id="addCategorySubmitBtn" class="action-btn" style="padding: 0.5rem 1rem;">대분류 추가</button>
+            </div>
+
+            <div id="categoryManagerList" style="display: flex; flex-direction: column; gap: 1.5rem; max-height: 50vh; overflow-y: auto;">
+                <!-- Managed categories go here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Login / Signup Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header" style="flex-direction: column; align-items: center; gap: 1rem; border: none; padding-bottom: 0;">
+                <div class="auth-brand" style="text-align: center; margin-bottom: 1rem;">
+                    <h1 style="font-size: 1.8rem; font-weight: 900; color: var(--primary); letter-spacing: -0.05em; margin: 0;">MY MONEY</h1>
+                    <p style="font-size: 0.75rem; color: var(--on-surface-variant); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7;">Private Financial Portal</p>
+                </div>
+                <h2 id="authModalTitle" style="font-size: 1.25rem; font-weight: 800;">로그인</h2>
+                <button id="closeAuthModal" class="close-btn" style="position: absolute; top: 1.5rem; right: 1.5rem;">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="username">아이디 (ID)</label>
+                    <input type="text" id="username" required placeholder="아이디를 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" required placeholder="비밀번호를 입력하세요">
+                </div>
+                
+                <div class="form-actions" style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" id="authSubmitBtn" class="submit-btn" style="flex: 1;">로그인</button>
+                    <button type="button" id="authModeToggleBtn" class="action-btn" style="flex: 1; background: var(--surface-container-low); color: var(--on-surface);">회원가입 하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- News Modal -->
+    <div id="newsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="newsModalTitle">뉴스 작성</h2>
+                <button id="closeNewsModal" class="close-btn">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <form id="newsForm">
+                <input type="hidden" id="newsId">
+                <div class="form-group">
+                    <label for="newsTitle">뉴스 제목 *</label>
+                    <input type="text" id="newsTitle" required placeholder="예: 미 연준, 금리 동결 발표">
+                </div>
+                <div class="form-group" style="padding-bottom: 2rem;">
+                    <label>기사 본문 (내용) *</label>
+                    <div id="editor-container" style="height: 350px; background: white; color: black; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" id="cancelNewsBtn">취소</button>
+                    <button type="submit" class="submit-btn" style="background: var(--primary-container);">작성 완료</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- News Reading Modal -->
+    <div id="newsReadModal" class="modal">
+        <div class="modal-content" style="max-width: 700px; max-height: 85vh; display: flex; flex-direction: column;">
+            <div class="modal-header" style="flex-shrink: 0; margin-bottom: 0.5rem; border-bottom: var(--ghost-border); padding-bottom: 1rem;">
+                <h2 id="readNewsTitle" style="font-size: 1.5rem; font-weight: 800; line-height: 1.3;">뉴스 제목</h2>
+                <button id="closeNewsReadModal" class="close-btn"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div id="readNewsDate" style="color: var(--on-surface-variant); font-size: 0.85rem; margin-bottom: 1.5rem; font-weight: 500; flex-shrink: 0;">날짜</div>
+            <div id="readNewsContent" style="flex-grow: 1; overflow-y: auto; white-space: pre-wrap; line-height: 1.8; color: var(--on-surface); font-size: 1rem;">
+                뉴스 기사 본문
+            </div>
+        </div>
+    </div>
+
+    <!-- Board Write Modal -->
+    <div id="boardModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2 id="boardModalTitle">인사이트 작성</h2>
+                <button id="closeBoardModal" class="close-btn">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <form id="boardForm">
+                <input type="hidden" id="boardId">
+                <div class="form-group">
+                    <label for="boardTitle">제목</label>
+                    <input type="text" id="boardTitle" required placeholder="예: 2026년 유망한 미국 배당주 추천">
+                </div>
+                <div class="form-group" style="padding-bottom: 2rem;">
+                    <label>추천 내용</label>
+                    <div id="boardEditor" style="height: 350px; background: white; color: black; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;"></div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">등록하기</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Board Read Modal -->
+    <div id="boardReadModal" class="modal">
+        <div class="modal-content" style="max-width: 800px; max-height: 85vh; display: flex; flex-direction: column;">
+            <div class="modal-header" style="flex-shrink: 0; margin-bottom: 0.5rem; border-bottom: var(--ghost-border); padding-bottom: 1rem;">
+                <h2 id="readBoardTitle" style="font-size: 1.5rem; font-weight: 800; line-height: 1.3;">제목</h2>
+                <button id="closeBoardReadModal" class="close-btn">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="flex-grow: 1; overflow-y: auto;">
+                <div class="meta-info" style="margin-bottom: 1.5rem; color: var(--on-surface-variant); font-size: 0.9rem;">
+                    <span id="readBoardAuthor">작성자</span> | <span id="readBoardDate">날짜</span>
+                </div>
+                <div id="readBoardContent" class="board-read-content" style="line-height: 1.8; color: var(--on-surface); font-size: 1rem; white-space: pre-wrap;">
+                    <!-- Content here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quill.js JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="data.js"></script>
+    <!-- Shortcut Modal -->
+    <div id="shortcutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="shortcutModalTitle">바로가기 추가</h3>
+                <button class="close-modal" id="closeShortcutModal">&times;</button>
+            </div>
+            <form id="shortcutForm">
+                <input type="hidden" id="shortcutId">
+                <div class="form-group">
+                    <label for="shortcutTitle">사이트명</label>
+                    <input type="text" id="shortcutTitle" placeholder="예: 네이버" required>
+                </div>
+                <div class="form-group">
+                    <label for="shortcutUrl">URL</label>
+                    <input type="url" id="shortcutUrl" placeholder="https://www.naver.com" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="save-btn">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content" style="max-width: 400px; text-align: center; padding: 2.5rem; border-radius: 20px;">
+            <div style="font-size: 3.5rem; color: #ff4d4f; margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <h2 id="confirmTitle" style="margin-bottom: 0.75rem; font-size: 1.5rem; font-weight: 700;">정말 삭제하시겠습니까?</h2>
+            <p id="confirmDesc" style="color: var(--on-surface-variant); margin-bottom: 2.5rem; font-size: 0.95rem; line-height: 1.5;">삭제된 내용은 복구할 수 없습니다.</p>
+            <div style="display: flex; gap: 1rem;">
+                <button id="confirmCancelBtn" class="action-btn" style="flex: 1; height: 50px; border-radius: 12px; font-weight: 600; background: #f5f5f5; color: #333; border: none; cursor: pointer;">취소</button>
+                <button id="confirmOkBtn" class="submit-btn" style="flex: 1; height: 50px; border-radius: 12px; font-weight: 600; background: #ff4d4f; color: white; border: none; cursor: pointer;">삭제하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script type="module" src="js/main.js?v=1.0.5"></script>
+</body>
+
+</html>

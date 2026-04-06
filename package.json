@@ -1,0 +1,24 @@
+{
+  "name": "mymoney-portal",
+  "version": "1.0.0",
+  "description": "Financial Favorites & Insight Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "axios": "^1.14.0",
+    "body-parser": "^1.20.4",
+    "cheerio": "^1.2.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.0",
+    "express": "^4.22.1",
+    "mongoose": "^9.4.1"
+  },
+  "author": "MY MONEY Team",
+  "license": "ISC",
+  "engines": {
+    "node": ">=20.x"
+  }
+}
